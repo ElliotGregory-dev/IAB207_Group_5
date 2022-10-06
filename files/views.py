@@ -1,9 +1,11 @@
 from flask import Blueprint,render_template
+from .models import User
 
 mainbp = Blueprint('main',__name__)
 
 @mainbp.route('/')
 def index():
+    u1 = User.query.filter_by(name="user_name").first()
     return render_template('index.html')
 
 @mainbp.route('/event_details')
