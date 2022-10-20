@@ -16,3 +16,5 @@ class RegisterForm(FlaskForm):
     confirm = PasswordField('Confirm Password', 
           validators=[EqualTo('password', message='Re-enter same as Password')])
     submit = SubmitField('Register')
+    
+    
