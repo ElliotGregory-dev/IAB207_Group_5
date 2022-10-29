@@ -18,10 +18,10 @@ class EventForm(FlaskForm):
   time = TimeField('Event Time:', format='%H:%M - %H:%M', validation=[InputRequired()])
   address= TextAreaField('Address', validators=[InputRequired()])
   city = TextAreaField('City', validators=[InputRequired()])
-  state = SelectMultipleField('Choose...', choices=[QLD, NSW, WA, SA, TAS, NT])
+  state = SelectMultipleField('Choose...', choices=['QLD', 'NSW', 'WA', 'SA', 'TAS', 'NT'],validators=[InputRequired()] )
   zip = IntegerField('Zip',validators=[InputRequired()] )
   capacity = TextAreaField('Event Capacity:',validators=[InputRequired()] )
-  ticketprice = IntegerField('Ticket Price:', DataRequired(), NumberRange(min=5, max=50))
+  ticketprice = IntegerField('Ticket Price:', Length(min=5, max=50))
   submit = SubmitField('Submit')
 
 #User login  
@@ -42,7 +42,7 @@ class RegisterForm(FlaskForm):
 #User review
 class ReviewForm(FlaskForm):
   topic = TextAreaField('Topic', [InputRequired()])
-  rate = IntegerField('Rate', DataRequired(), NumberRange(min=1, max=5))
+  rate = IntegerField('Rate', Length(min=1, max=5))
   review = TextAreaField('Review', [InputRequired()])
   report_review = SubmitField('ReportReview')
     
