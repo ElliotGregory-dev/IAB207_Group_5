@@ -1,8 +1,5 @@
-from files import create_app, db
+from files import create_app
 
-app=create_app()
-ctx = app.app_context()
-ctx.push()
-db.create_all()
-
-app.run()
+if __name__=='__main__':
+    n_app=create_app()
+    n_app.run(debug=True)
