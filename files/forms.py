@@ -24,20 +24,23 @@ class EventForm(FlaskForm):
   ticketprice = IntegerField('Ticket Price:', Length(min=5, max=50))
   submit = SubmitField('Submit')
 
-#User login  
+#User login
 class LoginForm(FlaskForm):
-  username = StringField('User Name', validators=[InputRequired()])
-  password = PasswordField('Password', validators=[InputRequired()])
-  submit = SubmitField('Login')
+    user_name=StringField("User Name", validators=[InputRequired('Enter user name')])
+    password=PasswordField("Password", validators=[InputRequired('Enter user password')])
+    submit = SubmitField("Login")
 
 #User register
 class RegisterForm(FlaskForm):
-    username = StringField('User Name', validators=[InputRequired()])
-    email = StringField('Email ID', validators=[InputRequired(),Email() ])
-    password = PasswordField('Password', validators=[InputRequired()])
-    confirm = PasswordField('Confirm Password', 
-          validators=[EqualTo('password', message='Re-enter same as Password')])
-    submit = SubmitField('Register')
+    user_name=StringField("User Name", validators=[InputRequired()])
+    email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
+    
+    #linking two fields - password should be equal to data entered in confirm
+    password=PasswordField("Password", validators=[InputRequired(),
+                  EqualTo('confirm', message="Passwords should match")])
+    confirm = PasswordField("Confirm Password")
+    #submit button
+    submit = SubmitField("Register")
     
 #User review
 class ReviewForm(FlaskForm):
