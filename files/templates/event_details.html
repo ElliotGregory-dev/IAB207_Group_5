@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Brandon Harris">
+    <meta name="keywords" content="HTML, CSS, Bootstrap">
+    <meta name="description" content="Food Event Management Website - Landing Page">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Foodie! - Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="CSS\styles.css" rel="stylesheet" type="text/css">
+
+    <!--Styling-->
+    <!--This is the only page where the styling is not referenced from the CSS sheet because some variables are different from the other pages-->
+    <style>
+        h1{color: green; text-align: center; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        h3{color: green;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        h2{text-align: center; border-width:2px; border-style:solid; border-color:rgb(26, 87, 18); padding:5px;
+        background: #93C572; color: black; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}   
+        h5{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}   
+        .card-text{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}  
+        .card-img-top{height: 60%; width: 100%;}  
+        .globe-text{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .see-more{border-width: 2px; border-style: solid; background-color: #93C572; text-shadow: black;
+        border-radius: 4px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+
+        .see-m{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .img-side{width: 75%; height:50%;}
+        .card-group{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .col2{flex: 50%;}
+        .hot{width: 55%; text-align: center;}
+        .fork{height: 50px; width: 15px}
+        .spoon{height: 50px; width: 15px;}
+        h6{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .vendors{text-align: center;}
+        .font{font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif}
+        p{font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .col{font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+      </style>
+
+  </head>
+
+  <header>
+    <nav class="navbar navbar-light" style="background-color:#8faf7a;">
+        <form class="form-inline">
+          <a class="btn btn-success" type="button" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"href="/login" >login</a>
+          <a class="btn btn-danger" type="button" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; "href="/register">register!</a>
+        </form>
+
+        <nav class="navbar navbar-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+              <img src="..\static\img\fork-logo.png" class="fork">
+                Foodie!
+              <img src="..\static\img\spoon-logo.png" class="spoon">
+            </a>
+          </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg" style="background-color:#8faf7a">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/booking_history">Account Booking</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/create_update">Create Event</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" a href="/event_details">Events</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+  </header>
+
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+    crossorigin="anonymous"></script>
+    
+    <br>
+    <div class="container">
+      <h3>Event Details:</h3>
+      <div style="background-color: rgb(255, 203, 107, 0.75)">
+        <div class="container2">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Buy Ticket
+          </button>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Purchase ticket:</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+            <div class="modal-body">
+               Are you sure you want to continue to purchase a ticket?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+        <br><h2>Mexican Mayhem</h2><br>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg">
+          <h4>Event Date:</h4>
+           <p>20/10/2022 - 30/10/2022</p>
+            </div>
+            <div class="col-lg">
+          <h4>Event Time:</h4>
+          <p>6:00pm - 11:59pm</p>
+            </div>
+            <div class="col-lg">
+          <h4>Event Location:</h4>
+          <p>Little Stanley St, South Brisbane QLD 4101</p>
+            </div>
+          </div>
+          <h4>Description:</h4>
+            <p>Mexican Mayhem is the absolute one stop shop for all your Mexican food needs! Have you been looking for that perfect churro? Do you desire to taste some of the spiciest
+          <br> foods in the world? Or perhaps you've never tried any type of Mexican dish before? Well don't be shy and come on down! Perfect for families to bring with the little ones!
+          This<br> year we bring a whole range on new vendors, as well as some favourites from last year. Carlito's Churro's are making a long awaited return as well as Guzman y Gomez.
+          <br> We'd also like to welcome one of our latest vendors, Juan Pablo's Bonanza, specialising in all things traditional!
+            </p>
+            <br>
+            <h5>Tickets: $25 each</h5>
+            <br>
+          <div class="row">
+            <div class="col-6">
+                <img src="..\static\img\mex1.jpg" height="400px" width="600px" class="img-thumbnail" alt="mex-may-thumbnail1">
+            </div>
+            <div class="col-6">
+                <img src="..\static\img\mex4.jpg" height="400px" width="600px" class="img-thumbnail" alt="mex-may-thumbnail2">
+            </div>
+          </div>
+         </div>
+         <br>
+        </div>
+      </div>
+    </div>
+
+      <br>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">"An amazing experience!"</h5>
+                <h6 class="card-subtitle mb-2 text-muted">5/5</h6>
+                <p class="card-text">"The family and I we're in town for the weekend and saw this event was nearby and on, so we decided to come down and see what the hype was about. 
+                  Absolutely worth it!" ~ pete27.</p>
+                  <div class="container7">
+                    <a href="#" class="card-link">Report Review</a>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">"Over-rated"</h5>
+                <h6 class="card-subtitle mb-2 text-muted">1/5</h6>
+                <p class="card-text">"Worst event I have ever been too, don't know why anyone hypes it up the way it is." ~ TrollStein</p>
+                <div class="container7">
+                <a href="#" class="card-link">Report Review</a>
+              </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">"Speechless"</h5>
+                <h6 class="card-subtitle mb-2 text-muted">5/5</h6>
+                <p class="card-text">"Best event I've ever been too!" ~ Jack Harlow</p>
+                  <div class="container7">
+                    <a href="#" class="card-link">Report Review</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">"Interesting event"</h5>
+                <h6 class="card-subtitle mb-2 text-muted">4/5</h6>
+                <p class="card-text">"Decided to go to the event and least to say it was quite interesting. One of the staff was rude however other than that it was sublime.
+                  ~ WarlordXYZ"</p>
+                  <div class="container7">
+                    <a href="#" class="card-link">Report Review</a>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+      </div>
+
+      <br>
+      <div class="container7">
+        <button type="button" class="btn btn-success">Post a Review</button>
+        <button type="button" class="btn btn-success">Find more events like this one</button>
+        <button type="button" class="btn btn-success">See More Reviews</button>
+
+      </div>
+      <br>
+      <h6>Follow us on <a href="#">Twitter</a> | <a href="#">Instagram</a> | <a href="#">Facebook</a> | Copyright 2022</h6>
+
+  </body>
+</html>
