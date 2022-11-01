@@ -1,88 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="author" content="Brandon Harris">
-    <meta name="keywords" content="HTML, CSS, Bootstrap">
-    <meta name="description" content="Food Event Management Website - Landing Page">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Foodie! - Home Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href="CSS\styles.css" rel="stylesheet" type="text/css">
+{% extends 'base.html' %}
 
-    <!--Styling-->
-    <!--This is the only page where the styling is not referenced from the CSS sheet because some variables are different from the other pages-->
-    <style>
-        h1{color: green; text-align: center; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-        h3{color: green;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-        h2{text-align: center; border-width:2px; border-style:solid; border-color:rgb(26, 87, 18); padding:5px;
-        background: #93C572; color: black; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}   
-        h5{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}   
-        .card-text{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}  
-        .card-img-top{height: 60%; width: 100%;}  
-        .globe-text{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-        .see-more{border-width: 2px; border-style: solid; background-color: #93C572; text-shadow: black;
-        border-radius: 4px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-
-        .see-m{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-        .img-side{width: 75%; height:50%;}
-        .card-group{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-        .col2{flex: 50%;}
-        .hot{width: 55%; text-align: center;}
-        .fork{height: 50px; width: 15px}
-        .spoon{height: 50px; width: 15px;}
-        h6{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-        .vendors{text-align: center;}
-        .font{font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif}
-        p{font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-        .col{font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
-      </style>
-
-  </head>
-
-  <header>
-    <nav class="navbar navbar-light" style="background-color:#8faf7a;">
-        <form class="form-inline">
-          <a class="btn btn-success" type="button" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"href="/login" >login</a>
-          <a class="btn btn-danger" type="button" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; "href="/register">register!</a>
-        </form>
-
-        <nav class="navbar navbar-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-              <img src="..\static\img\fork-logo.png" class="fork">
-                Foodie!
-              <img src="..\static\img\spoon-logo.png" class="spoon">
-            </a>
-          </div>
-        </nav>
-
-        <nav class="navbar navbar-expand-lg" style="background-color:#8faf7a">
-          <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="/booking_history">Account Booking</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="/create_update">Create Event</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" a href="/event_details">Events</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-  </header>
-
+  {% block content %}
   <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
@@ -173,8 +91,7 @@
             <br>
         <img src="..\static\img\man.jpg">
         </div>
-
-        <h6>Follow us on <a href="#">Twitter</a> | <a href="#">Instagram</a> | <a href="#">Facebook</a> | Copyright 2022</h6>
+        {% endblock %}
 
   </body>
 
