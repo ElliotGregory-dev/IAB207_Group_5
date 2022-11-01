@@ -19,3 +19,7 @@ def booking_history():
 @mainbp.route('/create_update')
 def create_update():
     return render_template('create_or_update.html')
+
+@mainbp.route('/all_events')
+def all_events():
+    return render_template('all_events.html')
