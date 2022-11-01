@@ -1,5 +1,3 @@
-{% block header %}
-{% endblock %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -77,12 +75,14 @@
                   <a class="nav-link active" href="/create_update">Create Event</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" a href="/event_details">Events</a>
+                  <a class="nav-link active" a href="/all_events">Events</a>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
+  {% block header %}
+  {% endblock %}
   </header>
 
   {% block content %}
