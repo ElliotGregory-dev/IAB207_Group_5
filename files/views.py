@@ -1,5 +1,5 @@
-from flask import Blueprint,render_template
-from .models import User
+from flask import Blueprint,render_template, request, redirect, url_for
+from .models import User, Event
 
 mainbp = Blueprint('main',__name__)
 
@@ -19,3 +19,13 @@ def booking_history():
 @mainbp.route('/create_update')
 def create_update():
     return render_template('create_or_update.html')
+
+@mainbp.route('/search')
+def search():
+    if request.args['search']:
+        print(request.args['search'])
+        event = "%" + request.args['search'] + '%'
+        events = Event.query.filter(Event.description.like(event)).all()
+        return render_template('index.html', events=events)
+    else:
+        return redirect(url_for('main.index'))
