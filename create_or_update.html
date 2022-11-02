@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/form.html" as wtf %}
+{% block content %}
+  <div class="container">
+    <div class = "rom mt-5">
+      <div class = "col-md-12">
+
+        <h3>Create your own event:</h3>
+
+        {{wtf.render_form(form)}}
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

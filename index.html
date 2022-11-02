@@ -1,0 +1,158 @@
+    {% extends "base.html" %}
+    <!--Styling-->
+    <!--This is the only page where the styling is not referenced from the CSS sheet because some variables are different from the other pages-->
+    {% block head %}
+    <style>
+        h1{color: green; text-align: center; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        h3{color: green;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        h2{text-align: center; border-width:2px; border-style:solid; border-color:rgb(26, 87, 18); padding:5px;
+        background: #93C572; color: black; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}   
+        h5{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}   
+        .card-text{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}  
+        .card-img-top{height: 60%; width: 100%;}  
+        .globe-text{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .see-more{border-width: 2px; border-style: solid; background-color: #93C572; text-shadow: black;
+        border-radius: 4px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+
+        .see-m{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .img-side{width: 75%; height:50%;}
+        .card-group{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .col2{flex: 50%;}
+        .hot{width: 55%; text-align: center;}
+        .fork{height: 50px; width: 15px}
+        .spoon{height: 50px; width: 15px;}
+        h6{text-align: center;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .vendors{text-align: center;}
+        .font{font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif}
+        p{font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+        .col{font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+    </style>
+    {% endblock %}
+
+    {% block header %}
+      <div class="container">
+        <div class="row justify-content-center mt-5 pb-4">
+          <div class="col-md-8">
+              <div class="card shadow p-5 mb-5">
+                <h1 class="text-center mb-3">Find an Event near you</h1>
+                <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.search')}}" >
+                    <input type="text" name="search" class="form-control flex-grow-1 my-1 mr-sm-2"   id="SearchForm">
+                    <button type="submit" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
+                  </form>
+
+              </div>
+          </div>
+        </div>
+    </div>
+  {% endblock %}
+
+    {% block content %}
+    <br>
+    <div class="container">
+        <h3><em>Welcome To Foodie!</em></h3>
+
+        <h2><em>Popular Events:</em></h2>
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            <div class="col">
+              <div class="card h-100">
+                <img src="img\taco.jpg" class="card-img-top" alt="taco_thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">Mexican Mayhem</h5>
+                  <p class="card-text">With food ranging from traditional Mexican to their westernised counterparts.</p>
+                  <h6><a href="event_details.html">Find out more</a></h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="img\sushi.jpg" class="card-img-top" alt="sushi_thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">Sushi Night</h5>
+                  <p class="card-text">From the distant land of Japan comes the widely popular dish, Sushi!</p>
+                  <h6><a href="event_details.html">Find out more</a></h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="img\thai.jpg" class="card-img-top" alt="thai_thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">Thai-til-you-die!</h5>
+                  <p class="card-text">Have a craving for the spicy food of Thailand? Come on down!</p>
+                  <h6><a href="event_details.html">Find out more</a></h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="img\mex4.jpg" class="card-img-top" alt="spice_thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">Spice Sundays</h5>
+                  <p class="card-text">Can never go wrong with a little spice! See what everyones talking about.</p>
+                  <h6><a href="event_details.html">Find out more</a></h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="img\ice-cream.jpg" class="card-img-top" alt="ice_cream_thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">Ice to meet you</h5>
+                  <p class="card-text">Perfect for those hot, sweltering days, where only ice cream can cool you.</p>
+                  <h6><a href="event_details.html">Find out more</a></h6>
+                </div>
+              </div>
+            </div>
+            
+            
+          </div>
+
+          <br>
+            <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-primary">See More</button>
+            </div>
+            <br>
+                <h5><em>At Foodie, we love to bring people together to experience the flavours of the world!</em></h5>              
+            <br>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <img src="img\zee's.jpg" height="100%" width="50%" class="rounded float-start">
+                        <img src="img\vend2.jpg" height="100%" width="50%" class="rounded float-end">
+                    </div>
+                </div>
+            </div>
+    <br>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card text-center">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Why not create an event yourself?</h5>
+            <p class="card-text">At Foodie, we'll work alongside you in setting up your venture. Just enter the required details and we'll contact you!</p>
+            <a href="create_or_update.html" class="btn btn-primary">Create Event</a>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card text-center">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Want to work for us?</h5>
+            <p class="card-text">We're always in need of some good help, so if you'd like to get your hands dirty, lets chat!</p>
+            <a href="#" class="btn btn-primary" style="text-align:center">Job Opportunities</a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    {% endblock %}
