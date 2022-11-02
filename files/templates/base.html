@@ -25,17 +25,25 @@
         crossorigin="anonymous"></script>
         <header>
           <nav class="navbar navbar-light" style="background-color:#8faf7a;">
+            <!-- if user logged in -->
+            {% if current_user.is_authenticated %}
               <form class="form-inline">
-                <button class="btn btn-success" type="button" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Logout</button>
-                <button class="btn btn-danger" type="button" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Sign Up!</button>
+                {{current_user.name}}
+                <a class="btn btn-success" href="{{ url_for('auth.logout') }}"type="button" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Logout</a>
               </form>
-      
+            {% else %}
+            <form class="form-inline">
+              <a class="btn btn-danger" href="{{ url_for('auth.register') }}" type="button" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Sign Up!</a>
+              <a class="btn btn-success" href="{{ url_for('auth.login') }}" type="button" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Login</a>
+            </form>
+            
+            {% endif %}
               <nav class="navbar navbar-light">
                 <div class="container-fluid">
                   <a class="navbar-brand" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-                    <img src="..\static\img\fork-logo.png" class="fork">
+                    <img src="..\static\img\fork-logo.png" class="fork" width="30" height="80">
                       Foodie!
-                    <img src="..\static\img\spoon-logo.png" class="spoon">
+                    <img src="..\static\img\spoon-logo.png" class="spoon" width="30" height="80">
                   </a>
                 </div>
               </nav>
@@ -48,7 +56,7 @@
                   <div class="collapse navbar-collapse" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" id="navbarNav">
                     <ul class="navbar-nav">
                       <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link active" href="{{url_for('main.index')}}">Home</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link active" href="booking_history.html">Account</a>
