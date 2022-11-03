@@ -18,7 +18,6 @@ from flask.helpers import flash
 # create blueprint
 bp = Blueprint('event', __name__, url_prefix='/events')
 
-
 @bp.route('/<id>',  methods=['GET', 'POST'])
 def show(id):
     event = Event.query.filter_by(id=id).first()
@@ -72,3 +71,6 @@ def check_upload_file(form):
     # save the file and return the db upload path
     fp.save(upload_path)
     return db_upload_path
+
+
+#add event ticket buying function

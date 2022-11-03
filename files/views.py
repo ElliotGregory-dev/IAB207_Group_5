@@ -29,7 +29,7 @@ def create_update():
 def search():
     if request.args['search']:
         print(request.args['search'])
-        event = "%" + request.args['search'] + '%'
+        event = request.args['search']
         events = Event.query.filter(Event.description.like(event)).all()
         return render_template('index.html', events=events)
     else:
