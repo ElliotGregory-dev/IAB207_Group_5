@@ -2,33 +2,24 @@
 
 {% import "bootstrap/form.html" as wtf %}
 {% block content %}
-  <div class="container">
-    <div class = "rom mt-5">
-      <div class = "col-md-12">
-
-        <h3>Create your own event:</h3>
-
-        {{wtf.render_form(form)}}
-
-                <div class="container7">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">I agree to the <a href="#">Terms and Conditions</a></label>
-                </div>
-                <div class="container7">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                <br>
-                </form>
-           </div>
-          </div>
-        </div>
-        <div class="container7">
-            <br>
-        <img src="..\static\img\man.jpg" class="rounded mx-auto d-block">
-        </div>
-        
+<div class="container">
+  <div class="rom mt-5">
+    <div class="col-md-12">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="row mt-3 mb-3">
+        {% for category, message in messages %}
+        <div class="alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
       </div>
+      {% endif %}
+      {% endwith%}
+      <h3>Create your own event:</h3>
+
+      {{wtf.render_form(form)}}
+
     </div>
   </div>
+</div>
 
 {% endblock %}
