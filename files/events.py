@@ -144,7 +144,7 @@ def update_event(id):
     update_form.description.data = event_to_update.description
     update_form.date_start.data = event_to_update.date_start
     update_form.date_end.data = event_to_update.date_end
-    update_form.image = db_file_path
+    update_form.image = event_to_update.image
     update_form.time_start.data = event_to_update.time_start
     update_form.time_end.data = event_to_update.time_end
     update_form.address.data = event_to_update.address
