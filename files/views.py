@@ -25,6 +25,9 @@ def create_update():
     create_form = CreateEventForm
     return render_template('create_or_update.html',form=create_form)
 
+@mainbp.route('/all_events')
+def all_events():
+    return render_template('all_events.html')
 @mainbp.route('/search')
 def search():
     if request.args['search']:
