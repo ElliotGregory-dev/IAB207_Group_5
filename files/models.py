@@ -18,6 +18,8 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return "<Name: {}, id: {}>".format(self.name, self.id)
 
+# add availability to Event data
+
 
 class Event(db.Model):
     __tablename__ = 'events'

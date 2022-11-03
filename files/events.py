@@ -120,3 +120,5 @@ def edit_component(id):
 # currently empty function
 
     return render_template('auctions/update.html', id=id, user=user, form=auction_item)
+
+# add event ticket buying function
