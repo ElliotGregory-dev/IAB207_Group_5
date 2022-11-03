@@ -1,4 +1,5 @@
 from flask import Blueprint,render_template, request, redirect, url_for
+from flask_login import login_required
 from .models import User, Event
 from .forms import CreateEventForm
 
@@ -14,10 +15,12 @@ def event_details():
     return render_template('event_details.html')
 
 @mainbp.route('/booking_history')
+@login_required
 def booking_history():
     return render_template('booking_history.html')
 
 @mainbp.route('/create_update')
+@login_required
 def create_update():
     create_form = CreateEventForm
     return render_template('create_or_update.html',form=create_form)

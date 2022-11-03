@@ -34,7 +34,7 @@ def register():
             return redirect(url_for('main.index'))
     #the else is called when there is a get message
     else:
-        return render_template('authentication/user.html', form=register, heading='Register')
+        return render_template('forms.html', form=register, heading='Register')
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -57,7 +57,7 @@ def login():
             return redirect(url_for('main.index'))
         else:
             flash(error)
-    return render_template('authentication/user.html', form=login_form, heading='Login')
+    return render_template('forms.html', form=login_form, heading='Login')
 
 @bp.route('/logout')
 @login_required
