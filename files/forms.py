@@ -47,6 +47,9 @@ class ReviewForm(FlaskForm):
   topic = TextAreaField('Topic', [InputRequired()])
   rate = IntegerField('Rate', Length(min=1, max=5))
   review = TextAreaField('Review', [InputRequired()])
-  report_review = SubmitField('ReportReview')
+  submit = SubmitField('Create')
+  
+
+  
     
     
