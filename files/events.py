@@ -38,16 +38,16 @@ def create_update():
             name=create_form.name.data,
             description=create_form.description.data,
             date_start=create_form.date_start.data,
-            date_end=str(create_form.date_end.data),
+            date_end=create_form.date_end.data,
             image=db_file_path,
-            time_start=str(create_form.time_start.data),
-            time_end=str(create_form.time_end.data),
+            time_start=create_form.time_start.data,
+            time_end=create_form.time_end.data,
             address=create_form.address.data,
             city=create_form.city.data,
             state=create_form.state.data,
             zip=create_form.zip.data,
             capacity=str(create_form.capacity.data),
-            ticket_price=str(create_form.ticketprice.data))
+            ticket_price=str(create_form.ticket_price.data))
 
         db.session.add(event)
         db.session.commit()
@@ -111,14 +111,48 @@ def delete_event(id):
         return "There was a problem deleting the event"
 
 
-@bp.route("/listed/<id>/updated", methods=['GET', 'POST'])
+@bp.route("/update/<id>/", methods=['GET', 'POST'])
 @login_required
-def edit_component(id):
+def update_event(id):
+    event_to_update = Event.query.get_or_404(id)
+    update_form = CreateEventForm()
+    user = Event.query.filter_by(owner_id=id)
+    event_form = CreateEventForm()
 
-    user = Event.query.filter_by(id=id)
-    auction_item = CreateEventForm()
-# currently empty function
+    if event_form.validate_on_submit():
+        db_file_path = check_upload_file(update_form)
+        event_to_update.name = update_form.name.data
+        event_to_update.description = update_form.description.data
+        event_to_update.date_start = update_form.date_start.data
+        event_to_update.date_end = update_form.date_end.data
+        event_to_update.image = db_file_path
+        event_to_update.time_start = update_form.time_start.data
+        event_to_update.time_end = update_form.time_end.data
+        event_to_update.address = update_form.address.data
+        event_to_update.city = update_form.city.data
+        event_to_update.state = update_form.state.data
+        event_to_update.zip = update_form.zip.data
+        event_to_update.capacity = str(update_form.capacity.data)
+        event_to_update.ticket_price = str(update_form.ticket_price.data)
+        # Update to Database
+        db.session.add(event_to_update)
+        db.session.commit()
+        flash("Event Has Been Updated!")
+        return redirect(url_for('event.show', id=event_to_update.id))
 
-    return render_template('auctions/update.html', id=id, user=user, form=auction_item)
+    update_form.name.data = event_to_update.name
+    update_form.description.data = event_to_update.description
+    update_form.date_start.data = event_to_update.date_start
+    update_form.date_end.data = event_to_update.date_end
+    update_form.image = event_to_update.image
+    update_form.time_start.data = event_to_update.time_start
+    update_form.time_end.data = event_to_update.time_end
+    update_form.address.data = event_to_update.address
+    update_form.city.data = event_to_update.city
+    update_form.state.data = event_to_update.state
+    update_form.zip.data = event_to_update.zip
+    update_form.capacity.data = event_to_update.capacity
+    update_form.ticket_price.data = event_to_update.ticket_price
+    return render_template('update.html', form=update_form)
 
 # add event ticket buying function
