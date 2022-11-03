@@ -1,6 +1,6 @@
 from multiprocessing.synchronize import Event
 from flask import Blueprint, render_template, request, redirect, url_for
-from IAB207_Group_5.files.forms import ReviewForm
+from . import ReviewForm
 from .models import User
 from flask_login import login_required, current_user
 from . import db, app
