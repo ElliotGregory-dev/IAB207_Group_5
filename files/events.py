@@ -25,7 +25,7 @@ def show(id):
     return render_template('event_details.html', event=event)
 
 
-@bp.route('/create')
+@bp.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_update():
     create_form = CreateEventForm()
@@ -33,9 +33,9 @@ def create_update():
     if create_form.validate_on_submit():
         db_file_path = check_upload_file(create_form)
         event = Event(
-            owner_id=current_user,
+            owner_id=current_user.getUserID(),
             name=create_form.name.data,
-            desctiption=create_form.description.data,
+            description=create_form.description.data,
             date_start=create_form.date_start.data,
             date_end=create_form.date_end.data,
             image=db_file_path,
@@ -46,14 +46,14 @@ def create_update():
             state=create_form.state.data,
             zip=create_form.zip.data,
             capacity=create_form.capacity.data,
-            ticket_price=create_form.ticket_price.data)
+            ticket_price=create_form.ticketprice.data)
 
         db.session.add(event)
         db.session.commit()
         message = "The list has been created successfully"
         flash(message, "success")
         print('Successfully created a new Event', 'success')
-        return redirect(url_for('event.create'))
+        return redirect(url_for('event.create_update'))
 
     return render_template('create_or_update.html', form=create_form)
 

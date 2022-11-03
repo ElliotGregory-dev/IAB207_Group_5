@@ -10,6 +10,9 @@ class User(db.Model, UserMixin):
     ph_number = db.Column(db.Integer, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)#should be 128 in length to store hash
 
+    def getUserID(self):
+        return self.id
+
     def __repr__(self):
         return "<Name: {}, id: {}>".format(self.name, self.id)
 
