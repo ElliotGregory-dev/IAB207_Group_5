@@ -34,7 +34,7 @@ class CreateEventForm(FlaskForm):
     state = StringField('State', validators=[InputRequired()])
     zip = StringField('Zip', validators=[InputRequired()])
     capacity = IntegerField('Event Capacity:', validators=[InputRequired()])
-    ticketprice = IntegerField('Ticket Price:', [validators.NumberRange(
+    ticket_price = IntegerField('Ticket Price:', [validators.NumberRange(
         min=5, max=50, message="The price should be at least $5 and maximum $50")])
     submit = SubmitField('Submit')
 
