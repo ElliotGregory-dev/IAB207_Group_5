@@ -1,5 +1,6 @@
 from flask import Blueprint,render_template, request, redirect, url_for
 from .models import User, Event
+from .forms import CreateEventForm
 
 mainbp = Blueprint('main',__name__)
 
@@ -18,7 +19,8 @@ def booking_history():
 
 @mainbp.route('/create_update')
 def create_update():
-    return render_template('create_or_update.html')
+    create_form = CreateEventForm
+    return render_template('create_or_update.html',form=create_form)
 
 @mainbp.route('/search')
 def search():

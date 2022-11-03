@@ -7,15 +7,17 @@ from flask_wtf.file import FileRequired, FileField, FileAllowed
 ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 
 #Create new event
-class EventForm(FlaskForm):
+class CreateEventForm(FlaskForm):
   name = StringField('Event Name:', validators=[InputRequired()])
   description = StringField('Event Description:', 
             validators=[InputRequired()])
-  date = DateField('Event Date:', format='%d-%m-%Y', validation=[InputRequired()])
+  date_start = DateField('Event Date:', format='%d-%m-%Y', validation=[InputRequired()])
+  date_end = DateField('Event Date:', format='%d-%m-%Y', validation=[InputRequired()])
   image = FileField('Attach Image(s):', validators=[
     FileRequired(message='No file selected'),
     FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
-  time = TimeField('Event Time:', format='%H:%M - %H:%M', validation=[InputRequired()])
+  time_start = TimeField('Event Time:', format='%H:%M - %H:%M', validation=[InputRequired()])
+  time_end = TimeField('Event Time:', format='%H:%M - %H:%M', validation=[InputRequired()])
   address= TextAreaField('Address', validators=[InputRequired()])
   city = TextAreaField('City', validators=[InputRequired()])
   state = SelectMultipleField('Choose...', choices=['QLD', 'NSW', 'WA', 'SA', 'TAS', 'NT'],validators=[InputRequired()] )
