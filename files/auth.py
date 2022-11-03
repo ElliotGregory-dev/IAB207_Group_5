@@ -18,6 +18,7 @@ def register():
             uname =register.user_name.data
             pwd = register.password.data
             email=register.email_id.data
+            phnum = register.ph_num.data
             #check if a user exists
             u1 = User.query.filter_by(name=uname).first()
             if u1:
@@ -26,14 +27,14 @@ def register():
             # don't store the password - create password hash
             pwd_hash = generate_password_hash(pwd)
             #create a new user model object
-            new_user = User(name=uname, password_hash=pwd_hash, emailid=email)
+            new_user = User(name=uname, password_hash=pwd_hash, emailid=email, ph_number=phnum)
             db.session.add(new_user)
             db.session.commit()
             #commit to the database and redirect to HTML page
             return redirect(url_for('main.index'))
     #the else is called when there is a get message
     else:
-        return render_template('user.html', form=register, heading='Register')
+        return render_template('forms.html', form=register, heading='Register')
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -56,10 +57,10 @@ def login():
             return redirect(url_for('main.index'))
         else:
             flash(error)
-    return render_template('user.html', form=login_form, heading='Login')
+    return render_template('forms.html', form=login_form, heading='Login')
 
 @bp.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return 'You have been logged out'
+    return render_template('authentication/logout.html')
