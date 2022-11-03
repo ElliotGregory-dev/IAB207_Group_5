@@ -1,70 +1,82 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateField, TimeField, SelectMultipleField, IntegerField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.validators import InputRequired, Length, Email, EqualTo, DataRequired
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 from wtforms import validators
 
 
-ALLOWED_FILE = {'PNG','JPG','png','jpg'}
+ALLOWED_FILE = {'PNG', 'JPG', 'png', 'jpg'}
 
-#Create new event
+# Create new event
+
+
 class CreateEventForm(FlaskForm):
-  name = StringField('Event Name:', validators=[InputRequired()])
-  description = StringField('Event Description:', 
-            validators=[InputRequired()])
-  # date_start = DateField('Event Date Start:', format='%d-%m-%Y', validators=[InputRequired()])
-  # date_end = DateField('Event Date End:', format='%d-%m-%Y', validators=[InputRequired()])
-  date_start = StringField('Event Date Start:', validators=[InputRequired()])
-  date_end = StringField('Event Date End:', validators=[InputRequired()])
-  image = FileField('Attach Image(s):', validators=[
-    FileRequired(message='No file selected'),
-    FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
-  # time_start = TimeField('Event Time Start:', format='%H:%M - %H:%M', validators=[InputRequired()])
-  # time_end = TimeField('Event Time End:', format='%H:%M - %H:%M', validators=[InputRequired()])
-  time_start = StringField('Event Time Start:', validators=[InputRequired()])
-  time_end = StringField('Event Time End:', validators=[InputRequired()])
-  address= StringField('Address', validators=[InputRequired()])
-  city = StringField('City', validators=[InputRequired()])
-  # state = SelectMultipleField('Choose...', choices=['QLD', 'NSW', 'WA', 'SA', 'TAS', 'NT'],validators=[InputRequired()] )
-  state = StringField('State', validators=[InputRequired()])
-  zip = StringField('Zip',validators=[InputRequired()] )
-  capacity = StringField('Event Capacity:',validators=[InputRequired()] )
-  ticketprice = StringField('Ticket Price:', [validators.Length(min=5,max=50, message="The price should be at least $5 and maximum $50")])
-  submit = SubmitField('Submit')
+    name = StringField('Event Name:', validators=[InputRequired()])
+    description = StringField('Event Description:',
+                              validators=[InputRequired()])
 
-#Ticket
+    # date_start = DateField('Event Date Start:',
+    #                        format='%d-%m-%Y', validators=[InputRequired()])
+    # date_end = DateField('Event Date End:', format='%d-%m-%Y',
+    #                      validators=[InputRequired()])
+    date_start = StringField('Event Date Start:', validators=[InputRequired()])
+    date_end = StringField('Event Date End:', validators=[InputRequired()])
+    image = FileField('Attach Image(s):', validators=[
+        FileRequired(message='No file selected'),
+        FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
+    # time_start = TimeField('Event Time Start:', format='%H:%M - %H:%M', validators=[InputRequired()])
+    # time_end = TimeField('Event Time End:', format='%H:%M - %H:%M', validators=[InputRequired()])
+    time_start = StringField('Event Time Start:', validators=[InputRequired()])
+    time_end = StringField('Event Time End:', validators=[InputRequired()])
+    address = StringField('Address', validators=[InputRequired()])
+    city = StringField('City', validators=[InputRequired()])
+    # state = SelectMultipleField('Choose...', choices=['QLD', 'NSW', 'WA', 'SA', 'TAS', 'NT'],validators=[InputRequired()] )
+    state = StringField('State', validators=[InputRequired()])
+    zip = StringField('Zip', validators=[InputRequired()])
+    capacity = IntegerField('Event Capacity:', validators=[InputRequired()])
+    ticketprice = IntegerField('Ticket Price:', [validators.NumberRange(
+        min=5, max=50, message="The price should be at least $5 and maximum $50")])
+    submit = SubmitField('Submit')
+
+# Ticket
+
+
 class BuyTicketForm(FlaskForm):
-  ticket_total = IntegerField('How many: ', validators = [Length(min=1)])
-  submit = SubmitField("Confirm")
-  
+    ticket_total = IntegerField('How many: ', validators=[Length(min=1)])
+    submit = SubmitField("Confirm")
 
-#User login
+
+# User login
 class LoginForm(FlaskForm):
-  user_name=StringField("User Name", validators=[InputRequired('Enter user name')])
-  password=PasswordField("Password", validators=[InputRequired('Enter user password')])
-  submit = SubmitField("Login")
+    user_name = StringField("User Name", validators=[
+                            InputRequired('Enter user name')])
+    password = PasswordField("Password", validators=[
+                             InputRequired('Enter user password')])
+    submit = SubmitField("Login")
 
-#User register
+# User register
+
+
 class RegisterForm(FlaskForm):
-  user_name = StringField("User Name", validators=[InputRequired()])
-  email_id = StringField("Email Address", validators=[Email("Please enter a valid email"), InputRequired()])
-  ph_num = StringField("Phone Number", validators=[InputRequired()])
-  
-  #linking two fields - password should be equal to data entered in confirm
-  password=PasswordField("Password", validators=[InputRequired(),
-                EqualTo('confirm', message="Passwords should match")])
-  confirm = PasswordField("Confirm Password")
-  #submit button
-  submit = SubmitField("Register")
-    
-#User review
-class ReviewForm(FlaskForm):
-  topic = TextAreaField('Topic', [InputRequired()])
-  rate = IntegerField('Rate', Length(min=1, max=5))
-  review = TextAreaField('Review', [InputRequired()])
-  submit = SubmitField('Create')
-  
+    user_name = StringField("User Name", validators=[InputRequired()])
+    email_id = StringField("Email Address", validators=[
+                           Email("Please enter a valid email"), InputRequired()])
+    ph_num = StringField("Phone Number", validators=[InputRequired()])
 
-  
-    
-    
+    # linking two fields - password should be equal to data entered in confirm
+    password = PasswordField("Password", validators=[InputRequired(),
+                                                     EqualTo('confirm', message="Passwords should match")])
+    confirm = PasswordField("Confirm Password")
+    # submit button
+    submit = SubmitField("Register")
+
+# User review
+
+
+class ReviewForm(FlaskForm):
+    # topic = TextAreaField('Topic', [InputRequired()])
+    date = StringField('Date', [InputRequired()])
+    rate = IntegerField('Rate', [validators.NumberRange(
+        min=1, max=5, message="The rating should be from 1 to 5")])
+    review = TextAreaField('Review', [InputRequired()])
+    submit = SubmitField('Write Review')
