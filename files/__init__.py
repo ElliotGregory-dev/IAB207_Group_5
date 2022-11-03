@@ -18,7 +18,6 @@ def create_app():
     bootstrap = Bootstrap4(app)
 
     login_manager = LoginManager()
-
     login_manager.login_view='auth.login'
     login_manager.init_app(app)
 
@@ -33,6 +32,9 @@ def create_app():
 
     from .auth import bp
     app.register_blueprint(bp)
+
+    from . import events
+    app.register_blueprint(events.bp)
 
     @app.errorhandler(404)
     def not_found(e):

@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateField, TimeField, SelectMultipleField, IntegerField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from flask_wtf.file import FileRequired, FileField, FileAllowed
+from wtforms import validators
 
 
 ALLOWED_FILE = {'PNG','JPG','png','jpg'}
@@ -11,19 +12,24 @@ class CreateEventForm(FlaskForm):
   name = StringField('Event Name:', validators=[InputRequired()])
   description = StringField('Event Description:', 
             validators=[InputRequired()])
-  date_start = DateField('Event Date:', format='%d-%m-%Y', validation=[InputRequired()])
-  date_end = DateField('Event Date:', format='%d-%m-%Y', validation=[InputRequired()])
+  # date_start = DateField('Event Date Start:', format='%d-%m-%Y', validators=[InputRequired()])
+  # date_end = DateField('Event Date End:', format='%d-%m-%Y', validators=[InputRequired()])
+  date_start = StringField('Event Date Start:', validators=[InputRequired()])
+  date_end = StringField('Event Date End:', validators=[InputRequired()])
   image = FileField('Attach Image(s):', validators=[
     FileRequired(message='No file selected'),
     FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
-  time_start = TimeField('Event Time:', format='%H:%M - %H:%M', validation=[InputRequired()])
-  time_end = TimeField('Event Time:', format='%H:%M - %H:%M', validation=[InputRequired()])
-  address= TextAreaField('Address', validators=[InputRequired()])
-  city = TextAreaField('City', validators=[InputRequired()])
-  state = SelectMultipleField('Choose...', choices=['QLD', 'NSW', 'WA', 'SA', 'TAS', 'NT'],validators=[InputRequired()] )
-  zip = IntegerField('Zip',validators=[InputRequired()] )
-  capacity = TextAreaField('Event Capacity:',validators=[InputRequired()] )
-  ticketprice = IntegerField('Ticket Price:', Length(min=5, max=50))
+  # time_start = TimeField('Event Time Start:', format='%H:%M - %H:%M', validators=[InputRequired()])
+  # time_end = TimeField('Event Time End:', format='%H:%M - %H:%M', validators=[InputRequired()])
+  time_start = StringField('Event Time Start:', validators=[InputRequired()])
+  time_end = StringField('Event Time End:', validators=[InputRequired()])
+  address= StringField('Address', validators=[InputRequired()])
+  city = StringField('City', validators=[InputRequired()])
+  # state = SelectMultipleField('Choose...', choices=['QLD', 'NSW', 'WA', 'SA', 'TAS', 'NT'],validators=[InputRequired()] )
+  state = StringField('State', validators=[InputRequired()])
+  zip = StringField('Zip',validators=[InputRequired()] )
+  capacity = StringField('Event Capacity:',validators=[InputRequired()] )
+  ticketprice = StringField('Ticket Price:', [validators.Length(min=5,max=50, message="The price should be at least $5 and maximum $50")])
   submit = SubmitField('Submit')
 
 #Ticket

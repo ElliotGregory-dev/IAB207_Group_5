@@ -2,16 +2,24 @@
 
 {% import "bootstrap/form.html" as wtf %}
 {% block content %}
-  <div class="container">
-    <div class = "rom mt-5">
-      <div class = "col-md-12">
-
-        <h3>Create your own event:</h3>
-
-        {{wtf.render_form(form)}}
-
+<div class="container">
+  <div class="rom mt-5">
+    <div class="col-md-12">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="row mt-3 mb-3">
+        {% for category, message in messages %}
+        <div class="alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
       </div>
+      {% endif %}
+      {% endwith%}
+      <h3>Create your own event:</h3>
+
+      {{wtf.render_form(form)}}
+
     </div>
   </div>
+</div>
 
 {% endblock %}
