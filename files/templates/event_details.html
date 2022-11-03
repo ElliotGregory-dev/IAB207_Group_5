@@ -34,42 +34,32 @@
       </div>
     </div>
     <br>
-    <h2>Mexican Mayhem</h2><br>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg">
-          <h4>Event Date:</h4>
-          <p>20/10/2022 - 30/10/2022</p>
+    <br><h2>{{event.name}}</h2><br>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg">
+        <h4>Event Date:</h4>
+         <p>{{event.date_start}}</p><p>{{event.date_end}}</p>
+          </div>
+          <div class="col-lg">
+        <h4>Event Time:</h4>
+        <p>{{event.time_start}}</p><p>{{event.time_end}}</p>
+          </div>
+          <div class="col-lg">
+        <h4>Event Location:</h4>
+        <p>{{event.address}}</p>
+          </div>
         </div>
-        <div class="col-lg">
-          <h4>Event Time:</h4>
-          <p>6:00pm - 11:59pm</p>
-        </div>
-        <div class="col-lg">
-          <h4>Event Location:</h4>
-          <p>Little Stanley St, South Brisbane QLD 4101</p>
-        </div>
-      </div>
-      <h4>Description:</h4>
-      <p>Mexican Mayhem is the absolute one stop shop for all your Mexican food needs! Have you been looking for that
-        perfect churro? Do you desire to taste some of the spiciest
-        <br> foods in the world? Or perhaps you've never tried any type of Mexican dish before? Well don't be shy and
-        come on down! Perfect for families to bring with the little ones!
-        This<br> year we bring a whole range on new vendors, as well as some favourites from last year. Carlito's
-        Churro's are making a long awaited return as well as Guzman y Gomez.
-        <br> We'd also like to welcome one of our latest vendors, Juan Pablo's Bonanza, specialising in all things
-        traditional!
-      </p>
-      <br>
-      <h5>Tickets: $25 each</h5>
-      <br>
-      <div class="row">
-        <div class="col-6">
-          <img src="img\mex1.jpg" height="400px" width="600px" class="img-thumbnail" alt="mex-may-thumbnail1">
-        </div>
-        <div class="col-6">
-          <img src="img\mex4.jpg" height="400px" width="600px" class="img-thumbnail" alt="mex-may-thumbnail2">
-        </div>
+        <h4>Description:</h4>
+          <p>{{event.description}}
+          </p>
+          <br>
+          <h5>Tickets: {{event.ticket_price}} each</h5>
+          <br>
+        <div class="row">
+          <div class="col-6">
+              <img src="{{event.image}}" height="400px" width="600px" class="img-thumbnail">
+          </div>
       </div>
     </div>
     <br>
