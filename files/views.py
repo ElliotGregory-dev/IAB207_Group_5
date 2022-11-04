@@ -28,6 +28,11 @@ def create_update():
 @mainbp.route('/all_events')
 def all_events():
     return render_template('all_events.html')
+
+@mainbp.route('/my_events')
+def my_events():
+    return render_template('my_events.html')
+
 @mainbp.route('/search')
 def search():
     if request.args['search']:
@@ -37,3 +42,4 @@ def search():
         return render_template('index.html', events=events)
     else:
         return redirect(url_for('main.index'))
+

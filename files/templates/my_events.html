@@ -1,6 +1,11 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-  {% block content %}
+{% import "bootstrap/form.html" as wtf %}
+
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+    <body>
     <br>
     <div class="container">
     <h3>User Booking History:</h3>
@@ -17,22 +22,20 @@
                 <th scope="col">Image Preview</th>
               </tr>
             </thead>
-            {% for event in myEvents %}
             <tbody>
               <tr>
-                <th scope="row">{{event.id}}</th>
-                <td>{{event.name}}</td>
-                <td>{{event.date_start}} - {{event.date_end}}</td>
+                <th scope="row">event.id</th>
+                <td>event.name</td>
+                <td>event.date_start - event.date_end</td>
                 <td>PLACEHOLDER</td>
-                <td><a class="nav-link disabled" href="#">Edit</a></td>
-                <td><img src="{{event.image}}" class="preview"></td>
+                <td><a class="nav-link active" href="#">Edit</a></td>
+                <td><img src="event.image" class="preview"></td>
 
               </tr>              
             </tbody>
-            {% endfor %}
           </table>
         </div>
     </div>
-        <!--Coloured Background last div-->
     </div>
-  {% endblock %}
+</body>
+    {% endblock %}
