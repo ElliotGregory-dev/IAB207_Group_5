@@ -23,7 +23,7 @@ bp = Blueprint('event', __name__, url_prefix='/events')
 @bp.route('/<id>',  methods=['GET', 'POST'])
 def show(id):
     event = Event.query.filter_by(id=id).first()
-    return render_template('event_details.html', event=event, review_form=ReviewForm())
+    return render_template('event_details.html', event=event, review_form=ReviewForm(), ticket_form=BuyTicketForm())
 
 
 @bp.route('/create', methods=['GET', 'POST'])
@@ -203,10 +203,12 @@ def book(id):
             db.session.add(event_to_update)
 
             db.session.commit()
+            message = "The Booking was successful"
+            flash(message, "success")
 
     else:
         # if user tries to purchase more tickets then there are available
-        flash("Not enough tickets available")
+        flash("Not enough tickets available", "warning")
         return redirect(url_for("event.show", id=id))
 
     return redirect(url_for("event.show", id=id))

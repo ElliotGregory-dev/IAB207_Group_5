@@ -21,7 +21,8 @@ class CreateEventForm(FlaskForm):
     #                      validators=[InputRequired()])
     date_start = StringField('Event Date Start:', validators=[InputRequired()])
     date_end = StringField('Event Date End:', validators=[InputRequired()])
-    status = SelectMultipleField('Event Status:', validators=[InputRequired()], choices=['open','cancelled','sold-out','unpublished'])
+    status = SelectMultipleField('Event Status:', validators=[InputRequired()], choices=[
+                                 'open', 'cancelled', 'sold-out', 'unpublished'])
     image = FileField('Attach Image(s):', validators=[
         FileRequired(message='No file selected'),
         FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
@@ -46,12 +47,6 @@ class BuyTicketForm(FlaskForm):
     ticket_amount = IntegerField('How many: ', validators=[Length(min=1)])
     date = StringField('Date:', validators=[InputRequired()])
     submit = SubmitField("Buy")
-
-    # __tablename__ = 'bookings'
-    # id = db.Column(db.Integer, primary_key=True)
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    # ticket_amount = db.Column(db.Integer, nullable=False)
-    # date = db.Column(db.String(20), nullable=False)
 
 
 # User login
