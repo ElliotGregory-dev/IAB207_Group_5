@@ -30,6 +30,7 @@ def all_events():
     return render_template('all_events.html')
 
 @mainbp.route('/my_events')
+@login_required
 def my_events():
     return render_template('my_events.html')
 
