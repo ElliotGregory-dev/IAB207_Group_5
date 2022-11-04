@@ -23,15 +23,17 @@
               </tr>
             </thead>
             <tbody>
+                {% for event in events %}
               <tr>
-                <th scope="row">event.id</th>
-                <td>event.name</td>
-                <td>event.date_start - event.date_end</td>
-                <td>PLACEHOLDER</td>
+                <th scope="row">{{event.id}}</th>
+                <td>{{event.name}}</td>
+                <td>{{event.date_start}} - {{event.date_end}}</td>
+                <td>{{event.status}}</td>
                 <td><a class="nav-link active" href="{{url_for('event.create_update')}}">Edit</a></td>
-                <td><img src="event.image" class="preview"></td>
+                <td><img src="{{event.image}}" class="preview"></td>
 
-              </tr>              
+              </tr>  
+              {% endfor %}            
             </tbody>
           </table>
         </div>
