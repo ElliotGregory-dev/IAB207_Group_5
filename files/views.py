@@ -32,7 +32,7 @@ def all_events():
 @mainbp.route('/my_events')
 @login_required
 def my_events():
-    return render_template('my_events.html')
+    return render_template('my_events.html', data=Event)
 
 @mainbp.route('/search')
 def search():
