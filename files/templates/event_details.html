@@ -16,12 +16,6 @@
   </div>
   {% endif %}
   {% endwith%}
-  <form class="form" action="/events/book/{{event.id}}/" method="POST" class="form" role="form">
-    {{ ticket_form.csrf_token() }}
-
-    {{wtf.render_form(ticket_form)}}
-
-  </form>
   <div style="background-color: rgb(255, 203, 107, 0.75)">
 
     <div class="container2">
