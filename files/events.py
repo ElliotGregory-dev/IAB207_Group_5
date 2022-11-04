@@ -167,48 +167,66 @@ def getImageData(filePath):
 # add event ticket buying function
 
 
-@bp.route("/book/<id>", methods=["GET", "POST"])
+@bp.route('/<id>/book/', methods=['GET', 'POST'])
 @login_required
 def book(id):
+    # simple version
     form = BuyTicketForm()
 
-    # get how many ticket user buying from the form
-    ticket_buying = form.ticket_amount.data
+    book = Booking(
+        user_id=current_user.getUserID(),
+        ticket_amount=form.ticket_amount.data,
+        date=form.date.data)
 
-    # check capacity from the database
-    tickets_left = Event.query.with_entities(
-        Event.capacity).filter_by(id=id).first()
-    available_tickets = tickets_left[0]
-
-    # if the amount of the tickets user buying less than or equal to available tickets
-    if ticket_buying <= available_tickets:
-
-        if form.validate_on_submit():
-            booking = Booking(
-                # read the bookings from the form
-                user_id=current_user.getUserID(),
-                ticket_amount=form.ticket_amount.data,
-                date=form.date.data)
-
-            db.session.add(booking)
-
-            # set new capacity to the event
-            event_to_update = Event.query.get_or_404(id)
-            event_to_update.capacity = available_tickets - ticket_buying
-
-            # set status to sold out if buying ticket equals to capacity
-            if ticket_buying == available_tickets:
-                event_to_update.status = 3
-
-            db.session.add(event_to_update)
-
-            db.session.commit()
-            message = "The Booking was successful"
-            flash(message, "success")
-
+    db.session.add(book)
+    db.session.commit()
+    if form.validate_on_submit():  # this is true only in case of POST method
+        print(
+            f'Booking form is valid. The Booking was {form.ticket_amount.data}')
     else:
-        # if user tries to purchase more tickets then there are available
-        flash("Not enough tickets available", "warning")
-        return redirect(url_for("event.show", id=id))
+        print('Booking form is invalid')
+    # notice the signature of url_for
+    return redirect(url_for('event.show', id=id))
 
-    return redirect(url_for("event.show", id=id))
+    # <<the complete version>>
+
+    # # get how many ticket user buying from the form
+    # ticket_buying = form.ticket_amount.data
+
+    # # check capacity from the database
+    # tickets_left = Event.query.with_entities(
+    #     Event.capacity).filter_by(id=id).first()
+    # available_tickets = tickets_left[0]
+
+    # # if the amount of the tickets user buying less than or equal to available tickets
+    # if ticket_buying <= available_tickets:
+
+    #     if form.validate_on_submit():
+    #         booking = Booking(
+    #             # read the bookings from the form
+    #             user_id=current_user.getUserID(),
+    #             ticket_amount=form.ticket_amount.data,
+    #             date=form.date.data)
+
+    #         db.session.add(booking)
+
+    #         # set new capacity to the event
+    #         event_to_update = Event.query.get_or_404(id)
+    #         event_to_update.capacity = available_tickets - ticket_buying
+
+    #         # set status to sold out if buying ticket equals to capacity
+    #         if ticket_buying == available_tickets:
+    #             event_to_update.status = 3
+
+    #         db.session.add(event_to_update)
+
+    #         db.session.commit()
+    #         message = "The Booking was successful"
+    #         flash(message, "success")
+
+    # else:
+    #     # if user tries to purchase more tickets than there are available
+    #     flash("Not enough tickets available", "warning")
+    #     return redirect(url_for("event.show", id=id))
+
+    # return redirect(url_for("event.show", id=id))

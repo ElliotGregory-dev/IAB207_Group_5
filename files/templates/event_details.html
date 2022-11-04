@@ -34,7 +34,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form class="form" action="/events/book/{{event.id}}/" method="POST" class="form" role="form">
+              <form class="form" action="/events/{{event.id}}/book/" method="POST" class="form" role="form">
                 {{ ticket_form.csrf_token() }}
 
                 {{wtf.render_form(ticket_form)}}
