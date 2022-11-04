@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% import "bootstrap/form.html" as wtf %}
+
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+    <body>
+    <br>
+    <div class="container">
+    <h3>User Booking History:</h3>
+    <div style="background-color:aliceblue">
+        <div class="table-responsive">
+        <table class="table table-hover table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Event ID</th>
+                <th scope="col">Event Name</th>
+                <th scope="col">Booking Date</th>
+                <th scope="col">Event Status</th>
+                <th scope="col">Edit Booking</th>
+                <th scope="col">Image Preview</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+              <tr>
+                <th scope="row">{{event.id}}</th>
+                <td>{{event.name}}</td>
+                <td>{{event.date_start}} - {{event.date_end}}</td>
+                <td>{{event.status}}</td>
+                <td><a class="nav-link active" href="{{url_for('event.create_update')}}">Edit</a></td>
+                <td><img src="{{event.image}}" class="preview"></td>
+
+              </tr>  
+              {% endfor %}            
+            </tbody>
+          </table>
+        </div>
+    </div>
+    </div>
+</body>
+    {% endblock %}
