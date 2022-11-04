@@ -39,7 +39,7 @@ def create_update():
             description=create_form.description.data,
             date_start=create_form.date_start.data,
             date_end=create_form.date_end.data,
-            status=Event.setStatus(create_form.status.data),
+            status=Event.setStatus(create_form.status.data[0]),
             image=db_file_path,
             time_start=create_form.time_start.data,
             time_end=create_form.time_end.data,
@@ -102,14 +102,12 @@ def review(id):
 @login_required
 def delete_event(id):
     # this is a function to delete an event
-    event_to_delete = Event.query.get_or_404(id)
-
-    try:
-        db.session.delete(event_to_delete)
-        db.session.commit()
-        return redirect(url_for('main.index'))
-    except:
-        return "There was a problem deleting the event"
+    reviews = Review.query.filter_by(event_id = id)
+    for review in reviews:
+        review.delete()
+    Event.query.filter_by(id = id).delete()
+    db.session.commit()
+    return redirect(url_for('main.index'))
 
 
 @bp.route("/update/<id>/", methods=['GET', 'POST'])
@@ -127,7 +125,7 @@ def update_event(id):
         event_to_update.date_start = update_form.date_start.data
         event_to_update.date_end = update_form.date_end.data
         event_to_update.image = db_file_path
-        event_to_update.status = Event.setStatus(update_form.status.data)
+        event_to_update.status = Event.setStatus(update_form.status.data[0])
         event_to_update.time_start = update_form.time_start.data
         event_to_update.time_end = update_form.time_end.data
         event_to_update.address = update_form.address.data
@@ -146,7 +144,8 @@ def update_event(id):
     update_form.description.data = event_to_update.description
     update_form.date_start.data = event_to_update.date_start
     update_form.date_end.data = event_to_update.date_end
-    update_form.image = event_to_update.image
+    update_form.image = getImageData(event_to_update.image)
+    update_form.status = [Event.getStatus(event_to_update)]
     update_form.time_start.data = event_to_update.time_start
     update_form.time_end.data = event_to_update.time_end
     update_form.address.data = event_to_update.address
@@ -156,5 +155,12 @@ def update_event(id):
     update_form.capacity.data = event_to_update.capacity
     update_form.ticket_price.data = event_to_update.ticket_price
     return render_template('update.html', form=update_form)
+
+def getImageData(filePath):
+    BASE_PATH = os.path.dirname(__file__)
+    image_path = os.path.join(
+        BASE_PATH, filePath
+    )
+    return image_path
 
 # add event ticket buying function
