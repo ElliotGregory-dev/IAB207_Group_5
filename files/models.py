@@ -36,8 +36,8 @@ class Event(db.Model):
     city = db.Column(db.String(50))
     state = db.Column(db.String(50))
     zip = db.Column(db.String(6))
-    capacity = db.Column(db.String(10))
-    ticket_price = db.Column(db.String(10))
+    capacity = db.Column(db.Integer)
+    ticket_price = db.Column(db.Integer)
 
     reviews = db.relationship('Review', backref='event')
 

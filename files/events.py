@@ -46,8 +46,8 @@ def create_update():
             city=create_form.city.data,
             state=create_form.state.data,
             zip=create_form.zip.data,
-            capacity=str(create_form.capacity.data),
-            ticket_price=str(create_form.ticket_price.data))
+            capacity=create_form.capacity.data,
+            ticket_price=create_form.ticket_price.data)
 
         db.session.add(event)
         db.session.commit()
@@ -132,8 +132,8 @@ def update_event(id):
         event_to_update.city = update_form.city.data
         event_to_update.state = update_form.state.data
         event_to_update.zip = update_form.zip.data
-        event_to_update.capacity = str(update_form.capacity.data)
-        event_to_update.ticket_price = str(update_form.ticket_price.data)
+        event_to_update.capacity = update_form.capacity.data
+        event_to_update.ticket_price = update_form.ticket_price.data
         # Update to Database
         db.session.add(event_to_update)
         db.session.commit()
