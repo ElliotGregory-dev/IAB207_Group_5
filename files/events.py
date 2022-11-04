@@ -116,7 +116,7 @@ def delete_event(id):
 def update_event(id):
     event_to_update = Event.query.get_or_404(id)
     update_form = CreateEventForm()
-    user = Event.query.filter_by(owner_id=id)
+
     event_form = CreateEventForm()
 
     if event_form.validate_on_submit():
@@ -156,3 +156,59 @@ def update_event(id):
     return render_template('update.html', form=update_form)
 
 # add event ticket buying function
+
+
+@bp.route("/book/<id>", methods=["GET", "POST"])
+@login_required
+def book(event_id):
+    form = BuyTicketForm()
+
+    # __tablename__ = 'bookings'
+    # id = db.Column(db.Integer, primary_key=True)
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # ticket_amount = db.Column(db.Integer, nullable=False)
+    # date = db.Column(db.String(20), nullable=False)
+
+    # ticket_amount = IntegerField('How many: ', validators=[Length(min=1)])
+    # date
+
+    # remove number of tickets based on user booking amount
+    user_ticket_count = form.ticket_count.data
+    tickets_to_buy = Event.query.with_entities(
+        Event.ticket_availability).filter_by(id=event_id).first()
+    available_tickets = tickets_to_buy[0]
+
+    check_event = Event.query.filter_by(id=event_id).with_entities(
+        Event.event_status).first()  # find event status
+    event_availability = check_event[0]
+
+    if form.validate_on_submit():
+        booking = Booking(  # read the bookings from the form
+            num_tickets=form.ticket_count.data,
+            data_and_time=datetime.now(),
+            user_id=current_user.id,
+            event_id=event_id,
+        )
+
+    # # updating the event details to reflect the ticket bookings
+    # num_rows_updated = Event.query.filter_by(id=event_id).update(
+    #     dict(ticket_availability=available_tickets - user_ticket_count)
+    # )
+
+    # if event_availability != Status.OPEN:  # if the event isn't open
+    #     flash("Tickets are not currently available for this event")
+    #     return redirect(url_for("event.display_detail", event_id=event_id))
+
+    # if user_ticket_count > available_tickets:  # if user tries to purchase more tickets then there are available
+    #     flash("Not enough tickets available")
+    #     return redirect(url_for("event.display_detail", event_id=event_id))
+
+    # if user_ticket_count <= available_tickets:
+    #     db.session.add(booking)
+
+    #     if user_ticket_count == available_tickets:
+    #         status_changed = Event.query.filter_by(
+    #             id=event_id).update(dict(event_status=Status.SOLD_OUT))
+
+    #     db.session.commit()
+    return redirect(url_for("main.index"))

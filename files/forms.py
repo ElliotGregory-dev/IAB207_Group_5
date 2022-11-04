@@ -42,8 +42,15 @@ class CreateEventForm(FlaskForm):
 
 
 class BuyTicketForm(FlaskForm):
-    ticket_total = IntegerField('How many: ', validators=[Length(min=1)])
-    submit = SubmitField("Confirm")
+    ticket_amount = IntegerField('How many: ', validators=[Length(min=1)])
+    date = StringField('Date:', validators=[InputRequired()])
+    submit = SubmitField("Buy")
+
+    # __tablename__ = 'bookings'
+    # id = db.Column(db.Integer, primary_key=True)
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # ticket_amount = db.Column(db.Integer, nullable=False)
+    # date = db.Column(db.String(20), nullable=False)
 
 
 # User login
