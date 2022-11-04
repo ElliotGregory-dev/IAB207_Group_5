@@ -39,6 +39,7 @@ def create_update():
             description=create_form.description.data,
             date_start=create_form.date_start.data,
             date_end=create_form.date_end.data,
+            status=Event.setStatus(create_form.status.data),
             image=db_file_path,
             time_start=create_form.time_start.data,
             time_end=create_form.time_end.data,
@@ -126,6 +127,7 @@ def update_event(id):
         event_to_update.date_start = update_form.date_start.data
         event_to_update.date_end = update_form.date_end.data
         event_to_update.image = db_file_path
+        event_to_update.status = Event.setStatus(update_form.status.data)
         event_to_update.time_start = update_form.time_start.data
         event_to_update.time_end = update_form.time_end.data
         event_to_update.address = update_form.address.data

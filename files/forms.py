@@ -21,6 +21,7 @@ class CreateEventForm(FlaskForm):
     #                      validators=[InputRequired()])
     date_start = StringField('Event Date Start:', validators=[InputRequired()])
     date_end = StringField('Event Date End:', validators=[InputRequired()])
+    status = SelectMultipleField('Event Status:', validators=[InputRequired()], choices=['open','cancelled','sold-out','unpublished'])
     image = FileField('Attach Image(s):', validators=[
         FileRequired(message='No file selected'),
         FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
