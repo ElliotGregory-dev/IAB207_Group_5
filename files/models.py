@@ -26,6 +26,7 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String(100))
+    status = db.Column(db.Integer)
     description = db.Column(db.String(1000))
     date_start = db.Column(db.String(20))
     date_end = db.Column(db.String(20))
@@ -43,6 +44,26 @@ class Event(db.Model):
 
     def getOwnerDetails(self):
         return User.query.filter_by(id=self.user_id)
+
+    def getStatus(self):
+        if(self.status == 1):
+            return "open"
+        elif(self.status == 2):
+            return "unpublished"
+        elif(self.status == 3):
+            return "sold-out"
+        elif(self.status == 4):
+            return "cancelled"
+
+    def setStatus(status):
+        if(status == "open"):
+            return 1
+        elif(status == "unpublished"):
+            return 2
+        elif(status == "sold-out"):
+            return 3
+        elif(status == "cancelled"):
+            return 4
 
     def getReviews(self):
         return Review.query.filter_by(event_id=self.id)
