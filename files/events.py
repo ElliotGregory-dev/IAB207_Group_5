@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, url_for, redirect, request
 from .models import Event, User, Review, Booking
 from .forms import CreateEventForm, BuyTicketForm, ReviewForm
 from flask_login import login_required, current_user
-from datetime import datetime
+from datetime import date
 from . import db
 import os
 from flask_wtf.form import FlaskForm
@@ -14,7 +14,7 @@ import sqlalchemy
 from sqlalchemy.engine import create_engine
 from werkzeug.utils import secure_filename
 from flask.helpers import flash
-from time import strftime, strptime
+from time import strftime
 
 # create blueprint
 bp = Blueprint('event', __name__, url_prefix='/events')
@@ -85,16 +85,16 @@ def review(id):
         review = Review(
             event_id=id,
             user_id=current_user.getUserID(),
-            date=review_form_instance.date.data,
+            date=date.today().strftime("%d/%m/%Y"),
             rating=review_form_instance.rate.data,
             review=review_form_instance.review.data
         )
         db.session.add(review)
         db.session.commit()
-        print(
+        flash(
             f'Review form is valid. The review was {review_form_instance.review.data}')
     else:
-        print('Review form is invalid')
+        flash('Review form is invalid')
 # notice the signature of url_for
     return redirect(url_for('event.show', id=id))
 
@@ -174,7 +174,6 @@ def book(id):
     # simple version
     form = BuyTicketForm()
 
-    
     if form.validate_on_submit():  # this is true only in case of POST method
         event =  Event.query.filter_by(id=id).first()
         bookings = event.getBookings()

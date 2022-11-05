@@ -78,7 +78,6 @@ class RegisterForm(FlaskForm):
 
 class ReviewForm(FlaskForm):
     # topic = TextAreaField('Topic', [InputRequired()])
-    date = StringField('Date', [InputRequired()])
     rate = IntegerField('Rate', [validators.NumberRange(
         min=1, max=5, message="The rating should be from 1 to 5")])
     review = TextAreaField('Review', [InputRequired()])
