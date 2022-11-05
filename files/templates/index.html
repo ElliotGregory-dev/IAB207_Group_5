@@ -15,7 +15,7 @@
     {% endfor %}
   </div>
   {% endif %}
-  {% endwith%}
+  {% endwith %}
   <!--end flash message -->
   <div class="row justify-content-center mt-5 pb-4">
     <div class="col-md-8">
@@ -33,11 +33,16 @@
 {% endblock %}
 
 {% block content %}
-<br>
+
 <div class="container">
+
+  <h3><em>Welcome To Foodie!</em></h3>
+
+  <h2><em>Events:</em></h2>
+  <br>
   <div class="card-group">
     {% for event in events %}
-    <div class="card mx-3">
+    <div class="card">
       <img class="card-img-top" src={{event.image}} alt="event picture">
       <div class="card-body">
         <h5 class="card-title">{{event.name}}</h5>
@@ -49,61 +54,11 @@
     {% endfor %}
   </div>
 
-  <h3><em>Welcome To Foodie!</em></h3>
 
-  <h2><em>Popular Events:</em></h2>
   <div class="row row-cols-1 row-cols-md-5 g-4">
     <div class="col">
       <div class="card h-100">
-        <img src="..\static\img\taco.jpg" class="card-img-top" alt="taco_thumbnail">
-        <div class="card-body">
-          <h5 class="card-title">Mexican Mayhem</h5>
-          <p class="card-text">With food ranging from traditional Mexican to their westernised counterparts.</p>
-          <h6><a href="{{url_for('main.event_details')}}">Find out more</a></h6>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="..\static\img\sushi.jpg" class="card-img-top" alt="sushi_thumbnail">
-        <div class="card-body">
-          <h5 class="card-title">Sushi Night</h5>
-          <p class="card-text">From the distant land of Japan comes the widely popular dish, Sushi!</p>
-          <h6><a href="event_details.html">Find out more</a></h6>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="..\static\img\thai.jpg" class="card-img-top" alt="thai_thumbnail">
-        <div class="card-body">
-          <h5 class="card-title">Thai-til-you-die!</h5>
-          <p class="card-text">Have a craving for the spicy food of Thailand? Come on down!</p>
-          <h6><a href="event_details.html">Find out more</a></h6>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="..\static\img\mex4.jpg" class="card-img-top" alt="spice_thumbnail">
-        <div class="card-body">
-          <h5 class="card-title">Spice Sundays</h5>
-          <p class="card-text">Can never go wrong with a little spice! See what everyones talking about.</p>
-          <h6><a href="event_details.html">Find out more</a></h6>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="..\static\img\ice-cream.jpg" class="card-img-top" alt="ice_cream_thumbnail">
-        <div class="card-body">
-          <h5 class="card-title">Ice to meet you</h5>
-          <p class="card-text">Perfect for those hot, sweltering days, where only ice cream can cool you.</p>
-          <h6><a href="event_details.html">Find out more</a></h6>
+        
         </div>
       </div>
     </div>
@@ -118,7 +73,7 @@
   <br>
   <h5><em>At Foodie, we love to bring people together to experience the flavours of the world!</em></h5>
   <br>
-
+<div class="container">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -146,15 +101,16 @@
       <div class="card text-center">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Want to find even more events?</h5>
-            <p class="card-text">We host a number of events, celebrating all cultures globally through food! Eat your
-              favourites or maybe eat something you've never heard of!</p>
-            <a href="#" class="btn btn-primary" style="text-align:center">More Events</a>
+            <h5 class="card-title">Want to find your own events?</h5>
+            <p class="card-text">We encourage all local vendors to create their own events, showcasing their specialities! Go straight to your created events here:</p>
+            <a href="#" class="btn btn-primary" style="text-align:center">My Events</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <br>
 
+</div>
 </div>
 {% endblock %}
