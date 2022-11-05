@@ -71,6 +71,13 @@ class Event(db.Model):
     def getBookings(self):
         return Booking.query.filter_by(event_id=self.id)
 
+    def getBought(self):
+        bookings = self.getBookings()
+        tickets_bought = 0
+        for booking in bookings:
+            tickets_bought += booking.ticket_amount
+        return tickets_bought
+
     def __repr__(self):  # string print method
         return "<Name: {}>".format(self.name)
 
