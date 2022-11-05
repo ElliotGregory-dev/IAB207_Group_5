@@ -8,7 +8,6 @@ mainbp = Blueprint('main', __name__)
 
 @mainbp.route('/')
 def index():
-    # u1 = User.query.filter_by(name="user_name").first()
     events = Event.query.filter_by().all()
     return render_template('index.html', events=events)
 
