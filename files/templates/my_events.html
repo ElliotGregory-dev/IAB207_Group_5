@@ -21,6 +21,7 @@
                 <th scope="col">Event Status</th>
                 <th scope="col">Edit Booking</th>
                 <th scope="col">Image Preview</th>
+                <th scope="col">Delete Event</th>
               </tr>
             </thead>
             <tbody>
@@ -33,6 +34,7 @@
                 <td>{{event.getStatus()}}</td>
                 <td><a class="nav-link active" href="{{url_for('event.create_update')}}">Edit</a></td>
                 <td><img src="{{event.image}}" class="img-thumbnail" style="width:100px;height:100px"></td>
+                <td><b><a class="nav-link active" href="/events/delete/{{event.id}}">Delete</a></b></td>
 
               </tr>  
               {% endfor %}            
