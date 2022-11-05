@@ -14,7 +14,7 @@
         Each event might have to be created with the forms by users etc?-->
 
 
-            <div class="container" style="background-color:aqua">
+            <div class="container">
         <h2><em>All Events:</em></h2>
         <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col">
@@ -72,13 +72,14 @@
               </div>
             </div>
           </div>
-    </div>
+    
     
 
         <!--FOR EVENTS CREATED FOR USERS-->
-        <div class="card-group">
+        <div class="col">
+          <div class="card-group">
             {% for event in data %}
-            <div class="card mx-3">
+            <div class="card h-100">
                <img class="card-img-top"
                   src={{event.image}} alt="event picture">
                <div class="card-body">
@@ -89,8 +90,10 @@
             </div>
             {% endfor %}
          </div>
+         </div>
       </div>
     </body>
+</div>
 </div>
     
     {% endblock %}
