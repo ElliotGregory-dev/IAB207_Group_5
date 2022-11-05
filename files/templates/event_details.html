@@ -174,7 +174,7 @@
   {% for review in event.reviews %}
   <div class="row border-bottom">
     <div class="col-md-12">
-      <b>{{ review.user_id.name }} <span class="ml-2 text-muted">{{ (review.date) }}</span></b>
+      <b>{{ review.user.name}} <span class="ml-2 text-muted">{{ (review.date) }}</span></b>
       <p>{{ review.review }}</p>
     </div>
   </div>

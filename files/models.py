@@ -84,6 +84,10 @@ class Review(db.Model):
     rating = db.Column(db.Integer)
     review = db.Column(db.String(500))
 
+    user = db.relationship('User')
+
+
+
     def getEventDetails(self):
         return Event.query.filter_by(id=self.event_id)
 
