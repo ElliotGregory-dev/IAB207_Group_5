@@ -68,6 +68,9 @@ class Event(db.Model):
     def getReviews(self):
         return Review.query.filter_by(event_id=self.id)
 
+    def getBookings(self):
+        return Booking.query.filter_by(event_id=self.id)
+
     def __repr__(self):  # string print method
         return "<Name: {}>".format(self.name)
 
@@ -95,6 +98,7 @@ class Booking(db.Model):
     __tablename__ = 'bookings'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     ticket_amount = db.Column(db.Integer, nullable=False)
     date = db.Column(db.String(20), nullable=False)
 

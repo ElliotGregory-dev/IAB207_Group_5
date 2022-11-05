@@ -80,16 +80,17 @@ def check_upload_file(form):
 @login_required
 def review(id):
     review_form_instance = ReviewForm()
-    review = Review(
-        event_id=id,
-        user_id=current_user.getUserID(),
-        date=review_form_instance.date.data,
-        rating=review_form_instance.rate.data,
-        review=review_form_instance.review.data
-    )
-    db.session.add(review)
-    db.session.commit()
+    
     if review_form_instance.validate_on_submit():  # this is true only in case of POST method
+        review = Review(
+            event_id=id,
+            user_id=current_user.getUserID(),
+            date=review_form_instance.date.data,
+            rating=review_form_instance.rate.data,
+            review=review_form_instance.review.data
+        )
+        db.session.add(review)
+        db.session.commit()
         print(
             f'Review form is valid. The review was {review_form_instance.review.data}')
     else:
@@ -173,15 +174,27 @@ def book(id):
     # simple version
     form = BuyTicketForm()
 
-    book = Booking(
-        user_id=current_user.getUserID(),
-        ticket_amount=form.ticket_amount.data,
-        date=form.date.data)
-
-    db.session.add(book)
-    db.session.commit()
+    
     if form.validate_on_submit():  # this is true only in case of POST method
-        print(
+        event =  Event.query.filter_by(id=id).first()
+        bookings = event.getBookings()
+        tickets_bought = 0
+        for booking in bookings:
+            tickets_bought += booking.ticket_amount
+        
+        if tickets_bought + form.ticket_amount.data > event.capacity:
+            flash('too many tickets ordered, try a smaller amount')
+            return redirect(url_for('event.show', id=id))
+
+        book = Booking(
+            user_id=current_user.getUserID(),
+            event_id=id,
+            ticket_amount=form.ticket_amount.data,
+            date=form.date.data)
+
+        db.session.add(book)
+        db.session.commit()
+        flash(
             f'Booking form is valid. The Booking was {form.ticket_amount.data}')
     else:
         print('Booking form is invalid')

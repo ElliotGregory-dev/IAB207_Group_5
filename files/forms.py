@@ -44,7 +44,7 @@ class CreateEventForm(FlaskForm):
 
 
 class BuyTicketForm(FlaskForm):
-    ticket_amount = IntegerField('How many: ', validators=[Length(min=1)])
+    ticket_amount = IntegerField('How many: ', validators=[InputRequired()])
     date = StringField('Date:', validators=[InputRequired()])
     submit = SubmitField("Buy")
 
