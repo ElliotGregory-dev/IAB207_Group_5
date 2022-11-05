@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, url_for, redirect, request
 from .models import Event, User, Review, Booking
-from .forms import CreateEventForm, BuyTicketForm, ReviewForm
+from .forms import CreateEventForm, BuyTicketForm, ReviewForm, DeleteForm
 from flask_login import login_required, current_user
 from datetime import date
 from . import db
@@ -23,7 +23,8 @@ bp = Blueprint('event', __name__, url_prefix='/events')
 @bp.route('/<id>',  methods=['GET', 'POST'])
 def show(id):
     event = Event.query.filter_by(id=id).first()
-    return render_template('event_details.html', event=event, review_form=ReviewForm(), ticket_form=BuyTicketForm())
+
+    return render_template('event_details.html', event=event, review_form=ReviewForm(), ticket_form=BuyTicketForm(), delete_form=DeleteForm())
 
 
 @bp.route('/create', methods=['GET', 'POST'])
@@ -54,7 +55,7 @@ def create_update():
         db.session.commit()
         message = "The list has been created successfully"
         flash(message, "success")
-        print('Successfully created a new Event', 'success')
+        print('Successfully created a new Event')
         return redirect(url_for('event.create_update'))
 
     return render_template('create_or_update.html', form=create_form)
@@ -108,6 +109,8 @@ def delete_event(id):
         review.delete()
     Event.query.filter_by(id=id).delete()
     db.session.commit()
+    message = "Delete The Event Successfully"
+    flash(message, "success")
     return redirect(url_for('main.index'))
 
 
@@ -138,7 +141,7 @@ def update_event(id):
         # Update to Database
         db.session.add(event_to_update)
         db.session.commit()
-        flash("Event Has Been Updated!")
+        flash("Event Has Been Updated!", "success")
         return redirect(url_for('event.show', id=event_to_update.id))
 
     update_form.name.data = event_to_update.name

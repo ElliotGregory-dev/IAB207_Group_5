@@ -82,3 +82,7 @@ class ReviewForm(FlaskForm):
         min=1, max=5, message="The rating should be from 1 to 5")])
     review = TextAreaField('Review', [InputRequired()])
     submit = SubmitField('Write Review')
+
+
+class DeleteForm(FlaskForm):
+    delete = SubmitField('Delete this Event')

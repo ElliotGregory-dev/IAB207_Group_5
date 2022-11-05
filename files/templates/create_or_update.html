@@ -9,7 +9,7 @@
       {% if messages %}
       <div class="row mt-3 mb-3">
         {% for category, message in messages %}
-        <div class="alert-{{ category }}">{{ message }}</div>
+        <div class="alert alert-{{ category }}">{{ message }}</div>
         {% endfor %}
       </div>
       {% endif %}

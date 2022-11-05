@@ -6,7 +6,7 @@
 <br>
 <div class="container">
   <h3>Event Details:</h3>
-  {% if event.status == 1 %}
+  <!-- flash message -->
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
   <div class="row mt-3 mb-3">
@@ -16,6 +16,15 @@
   </div>
   {% endif %}
   {% endwith%}
+  <!--end flash message -->
+
+
+
+
+  <!-- buy button -->
+  {% if event.status == 1 %}
+
+
   <div style="background-color: rgb(255, 203, 107, 0.75)">
 
     <div class="container2">
@@ -55,6 +64,7 @@
     </div>
 
     {% endif %}
+    <!--end buy button -->
     <br>
     <br>
     <h2>{{event.name}}</h2><br>
@@ -163,6 +173,15 @@
   <button type="button" class="btn btn-success">Find more events like this one</button>
   <button type="button" class="btn btn-success">See More Reviews</button>
 </div> -->
+
+<!--Delete button-->
+{% if event.owner_id == current_user.id %}
+<form action="/events/delete/{{event.id}}" method="POST" class="form" role="form">
+  {{ delete_form.csrf_token() }}
+  <button type="submit" id="add" name="add" class="btn btn-outline-danger">Delete this event</button>
+</form>
+<!--End of Delete button-->
+{% endif %}
 
 
 <!-- Review -->

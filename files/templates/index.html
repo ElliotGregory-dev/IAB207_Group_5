@@ -1,147 +1,160 @@
-    {% extends "base.html" %}
-    {% block head %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    {% endblock %}
+{% extends "base.html" %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+{% endblock %}
 
-    {% block header %}
-      <div class="container">
-        <div class="row justify-content-center mt-5 pb-4">
-          <div class="col-md-8">
-              <div class="card shadow p-5 mb-5">
-                <h1 class="text-center mb-3">Find an Event near you</h1>
-                <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.search')}}" >
-                    <input type="text" name="search" class="form-control flex-grow-1 my-1 mr-sm-2"   id="SearchForm">
-                    <button type="submit" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
-                  </form>
+{% block header %}
+<div class="container">
+  <!-- flash message -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="row mt-3 mb-3">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith%}
+  <!--end flash message -->
+  <div class="row justify-content-center mt-5 pb-4">
+    <div class="col-md-8">
+      <div class="card shadow p-5 mb-5">
+        <h1 class="text-center mb-3">Find an Event near you</h1>
+        <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.search')}}">
+          <input type="text" name="search" class="form-control flex-grow-1 my-1 mr-sm-2" id="SearchForm">
+          <button type="submit" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
+        </form>
 
-              </div>
-          </div>
-        </div>
+      </div>
     </div>
-  {% endblock %}
+  </div>
+</div>
+{% endblock %}
 
-    {% block content %}
-    <br>
-    <div class="container">
-        <div class="card-group">
-        {% for event in events %}
-        <div class="card mx-3">
-          <img class="card-img-top"
-              src={{event.image}} alt="event picture">
-          <div class="card-body">
-              <h5 class="card-title">{{event.name}}</h5>
-              <p class="card-text">{{event.description}}</p>
-          </div>
-          <div class="card-footer"><a href = "{{url_for('event.show', id=event.id)}}" class ="btn btn-danger">View Details</a></div>
-          </div>
-          {% endfor %}
+{% block content %}
+<br>
+<div class="container">
+  <div class="card-group">
+    {% for event in events %}
+    <div class="card mx-3">
+      <img class="card-img-top" src={{event.image}} alt="event picture">
+      <div class="card-body">
+        <h5 class="card-title">{{event.name}}</h5>
+        <p class="card-text">{{event.description}}</p>
+      </div>
+      <div class="card-footer"><a href="{{url_for('event.show', id=event.id)}}" class="btn btn-danger">View Details</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <h3><em>Welcome To Foodie!</em></h3>
+
+  <h2><em>Popular Events:</em></h2>
+  <div class="row row-cols-1 row-cols-md-5 g-4">
+    <div class="col">
+      <div class="card h-100">
+        <img src="..\static\img\taco.jpg" class="card-img-top" alt="taco_thumbnail">
+        <div class="card-body">
+          <h5 class="card-title">Mexican Mayhem</h5>
+          <p class="card-text">With food ranging from traditional Mexican to their westernised counterparts.</p>
+          <h6><a href="{{url_for('main.event_details')}}">Find out more</a></h6>
         </div>
-        
-        <h3><em>Welcome To Foodie!</em></h3>
+      </div>
+    </div>
 
-        <h2><em>Popular Events:</em></h2>
-        <div class="row row-cols-1 row-cols-md-5 g-4">
-            <div class="col">
-              <div class="card h-100">
-                <img src="..\static\img\taco.jpg" class="card-img-top" alt="taco_thumbnail">
-                <div class="card-body">
-                  <h5 class="card-title">Mexican Mayhem</h5>
-                  <p class="card-text">With food ranging from traditional Mexican to their westernised counterparts.</p>
-                  <h6><a href="{{url_for('main.event_details')}}">Find out more</a></h6>
-                </div>
-              </div>
-            </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..\static\img\sushi.jpg" class="card-img-top" alt="sushi_thumbnail">
+        <div class="card-body">
+          <h5 class="card-title">Sushi Night</h5>
+          <p class="card-text">From the distant land of Japan comes the widely popular dish, Sushi!</p>
+          <h6><a href="event_details.html">Find out more</a></h6>
+        </div>
+      </div>
+    </div>
 
-            <div class="col">
-              <div class="card h-100">
-                <img src="..\static\img\sushi.jpg" class="card-img-top" alt="sushi_thumbnail">
-                <div class="card-body">
-                  <h5 class="card-title">Sushi Night</h5>
-                  <p class="card-text">From the distant land of Japan comes the widely popular dish, Sushi!</p>
-                  <h6><a href="event_details.html">Find out more</a></h6>
-                </div>
-              </div>
-            </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..\static\img\thai.jpg" class="card-img-top" alt="thai_thumbnail">
+        <div class="card-body">
+          <h5 class="card-title">Thai-til-you-die!</h5>
+          <p class="card-text">Have a craving for the spicy food of Thailand? Come on down!</p>
+          <h6><a href="event_details.html">Find out more</a></h6>
+        </div>
+      </div>
+    </div>
 
-            <div class="col">
-              <div class="card h-100">
-                <img src="..\static\img\thai.jpg" class="card-img-top" alt="thai_thumbnail">
-                <div class="card-body">
-                  <h5 class="card-title">Thai-til-you-die!</h5>
-                  <p class="card-text">Have a craving for the spicy food of Thailand? Come on down!</p>
-                  <h6><a href="event_details.html">Find out more</a></h6>
-                </div>
-              </div>
-            </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..\static\img\mex4.jpg" class="card-img-top" alt="spice_thumbnail">
+        <div class="card-body">
+          <h5 class="card-title">Spice Sundays</h5>
+          <p class="card-text">Can never go wrong with a little spice! See what everyones talking about.</p>
+          <h6><a href="event_details.html">Find out more</a></h6>
+        </div>
+      </div>
+    </div>
 
-            <div class="col">
-              <div class="card h-100">
-                <img src="..\static\img\mex4.jpg" class="card-img-top" alt="spice_thumbnail">
-                <div class="card-body">
-                  <h5 class="card-title">Spice Sundays</h5>
-                  <p class="card-text">Can never go wrong with a little spice! See what everyones talking about.</p>
-                  <h6><a href="event_details.html">Find out more</a></h6>
-                </div>
-              </div>
-            </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..\static\img\ice-cream.jpg" class="card-img-top" alt="ice_cream_thumbnail">
+        <div class="card-body">
+          <h5 class="card-title">Ice to meet you</h5>
+          <p class="card-text">Perfect for those hot, sweltering days, where only ice cream can cool you.</p>
+          <h6><a href="event_details.html">Find out more</a></h6>
+        </div>
+      </div>
+    </div>
 
-            <div class="col">
-              <div class="card h-100">
-                <img src="..\static\img\ice-cream.jpg" class="card-img-top" alt="ice_cream_thumbnail">
-                <div class="card-body">
-                  <h5 class="card-title">Ice to meet you</h5>
-                  <p class="card-text">Perfect for those hot, sweltering days, where only ice cream can cool you.</p>
-                  <h6><a href="event_details.html">Find out more</a></h6>
-                </div>
-              </div>
-            </div>
-            
-            
-          </div>
 
-          <br>
-            <div class="col-md-12 text-center">
-                <a href="all_events">See More</a>
-            </div>
-            <br>
-                <h5><em>At Foodie, we love to bring people together to experience the flavours of the world!</em></h5>              
-            <br>
+  </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <img src="..\static\img\zee's.jpg" height="100%" width="50%" class="rounded float-start">
-                        <img src="..\static\img\vend2.jpg" height="100%" width="50%" class="rounded float-end">
-                    </div>
-                </div>
-            </div>
-    <br>
+  <br>
+  <div class="col-md-12 text-center">
+    <a href="all_events">See More</a>
+  </div>
+  <br>
+  <h5><em>At Foodie, we love to bring people together to experience the flavours of the world!</em></h5>
+  <br>
 
+  <div class="container">
     <div class="row">
-      <div class="col-sm-6">
-        <div class="card text-center">
+      <div class="col">
+        <img src="..\static\img\zee's.jpg" height="100%" width="50%" class="rounded float-start">
+        <img src="..\static\img\vend2.jpg" height="100%" width="50%" class="rounded float-end">
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card text-center">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Why not create an event yourself?</h5>
-            <p class="card-text">At Foodie, we'll work alongside you in setting up your venture. Just enter the required details and we'll contact you!</p>
+            <p class="card-text">At Foodie, we'll work alongside you in setting up your venture. Just enter the required
+              details and we'll contact you!</p>
             <a href="create_or_update.html" class="btn btn-primary">Create Event</a>
           </div>
         </div>
-        </div>
       </div>
-      <div class="col-sm-6">
-        <div class="card text-center">
+    </div>
+    <div class="col-sm-6">
+      <div class="card text-center">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Want to find even more events?</h5>
-            <p class="card-text">We host a number of events, celebrating all cultures globally through food! Eat your favourites or maybe eat something you've never heard of!</p>
+            <p class="card-text">We host a number of events, celebrating all cultures globally through food! Eat your
+              favourites or maybe eat something you've never heard of!</p>
             <a href="#" class="btn btn-primary" style="text-align:center">More Events</a>
           </div>
         </div>
-        </div>
       </div>
     </div>
+  </div>
 
-    </div>
-    {% endblock %}
+</div>
+{% endblock %}
