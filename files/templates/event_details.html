@@ -179,7 +179,9 @@
 {% if event.owner_id == current_user.id %}
 <form action="/events/delete/{{event.id}}" method="POST" class="form" role="form">
   {{ delete_form.csrf_token() }}
+  <div class="text-center">
   <button type="submit" id="add" name="add" class="btn btn-outline-danger">Delete this event</button>
+</div>
 </form>
 <!--End of Delete button-->
 {% endif %}
