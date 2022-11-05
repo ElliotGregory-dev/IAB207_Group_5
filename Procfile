@@ -1,1 +1,1 @@
-web: gunicorn -w 2 'trafilesvel:create_app()'
+web: gunicorn -w 2 'files:create_app()'
