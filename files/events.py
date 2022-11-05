@@ -184,7 +184,7 @@ def book(id):
             flash('too many tickets ordered, try a smaller amount', "danger")
             return redirect(url_for('event.show', id=id))
 
-        if event.getBought() + form.ticket_amount_data == event.capacity:
+        if event.getBought() + form.ticket_amount.data == event.capacity:
             event.setStatus("sold-out")
 
         book = Booking(

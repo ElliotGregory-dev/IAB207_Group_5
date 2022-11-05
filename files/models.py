@@ -55,15 +55,15 @@ class Event(db.Model):
         elif(self.status == 4):
             return "cancelled"
 
-    def setStatus(status):
+    def setStatus(self, status):
         if(status == "open"):
-            return 1
+            self.status = 1
         elif(status == "unpublished"):
-            return 2
+            self.status = 2
         elif(status == "sold-out"):
-            return 3
+            self.status = 3
         elif(status == "cancelled"):
-            return 4
+            self.status = 4
 
     def getReviews(self):
         return Review.query.filter_by(event_id=self.id)
