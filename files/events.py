@@ -176,12 +176,8 @@ def book(id):
 
     if form.validate_on_submit():  # this is true only in case of POST method
         event =  Event.query.filter_by(id=id).first()
-        bookings = event.getBookings()
-        tickets_bought = 0
-        for booking in bookings:
-            tickets_bought += booking.ticket_amount
-        
-        if tickets_bought + form.ticket_amount.data > event.capacity:
+               
+        if event.getBought() + form.ticket_amount.data > event.capacity:
             flash('too many tickets ordered, try a smaller amount')
             return redirect(url_for('event.show', id=id))
 
