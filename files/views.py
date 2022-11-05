@@ -27,7 +27,8 @@ def create_update():
 
 @mainbp.route('/all_events')
 def all_events():
-    return render_template('all_events.html')
+    event = Event.query.all()
+    return render_template('all_events.html', data=event)
 
 @mainbp.route('/my_events')
 @login_required
