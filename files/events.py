@@ -80,7 +80,7 @@ def check_upload_file(form):
 @login_required
 def review(id):
     review_form_instance = ReviewForm()
-    
+
     if review_form_instance.validate_on_submit():  # this is true only in case of POST method
         review = Review(
             event_id=id,
@@ -175,14 +175,14 @@ def book(id):
     form = BuyTicketForm()
 
     if form.validate_on_submit():  # this is true only in case of POST method
-        event =  Event.query.filter_by(id=id).first()
+        event = Event.query.filter_by(id=id).first()
         bookings = event.getBookings()
         tickets_bought = 0
         for booking in bookings:
             tickets_bought += booking.ticket_amount
-        
+
         if tickets_bought + form.ticket_amount.data > event.capacity:
-            flash('too many tickets ordered, try a smaller amount')
+            flash('too many tickets ordered, try a smaller amount', "danger")
             return redirect(url_for('event.show', id=id))
 
         book = Booking(
@@ -193,8 +193,9 @@ def book(id):
 
         db.session.add(book)
         db.session.commit()
-        flash(
-            f'Booking form is valid. The Booking was {form.ticket_amount.data}')
+        message = f'Succeccfully bought {form.ticket_amount.data} tickets'
+        flash(message, "success")
+
     else:
         print('Booking form is invalid')
     # notice the signature of url_for
