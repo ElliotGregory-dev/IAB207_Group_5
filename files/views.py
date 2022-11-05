@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template, request, redirect, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 from .models import User, Event
 from .forms import CreateEventForm
 
@@ -32,7 +32,8 @@ def all_events():
 @mainbp.route('/my_events')
 @login_required
 def my_events():
-    return render_template('my_events.html', data=Event)
+    event = Event.query.filter_by(owner_id = current_user.getUserID())
+    return render_template('my_events.html', data=event)
 
 @mainbp.route('/search')
 def search():
