@@ -32,7 +32,7 @@
                 <td>{{event.date_start}} - {{event.date_end}}</td>
                 <td>{{event.time_start}} - {{event.time_end}}</td>
                 <td>{{event.getStatus()}}</td>
-                <td><a class="nav-link active" href="{{url_for('event.create_update')}}">Edit</a></td>
+                <td><a class="nav-link active" href="/events/update/{{event.id}}">Edit</a></td>
                 <td><img src="{{event.image}}" class="img-thumbnail" style="width:100px;height:100px"></td>
                 <td><b><a class="nav-link active" href="/events/delete/{{event.id}}">Delete</a></b></td>
 
