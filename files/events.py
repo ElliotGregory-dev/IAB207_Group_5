@@ -106,7 +106,7 @@ def delete_event(id):
     # this is a function to delete an event
     reviews = Review.query.filter_by(event_id=id)
     for review in reviews:
-        review.delete()
+        Review.query.filter_by(id=review.id)
     Event.query.filter_by(id=id).delete()
     db.session.commit()
     message = "Delete The Event Successfully"
