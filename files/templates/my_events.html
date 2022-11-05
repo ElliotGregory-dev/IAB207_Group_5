@@ -32,7 +32,7 @@
                 <td>{{event.time_start}} - {{event.time_end}}</td>
                 <td>{{event.status}}</td>
                 <td><a class="nav-link active" href="{{url_for('event.create_update')}}">Edit</a></td>
-                <td><img src="{{event.image}}" class="preview"></td>
+                <td><img src="{{event.image}}" class="img-thumbnail" style="width:100px;height:100px"></td>
 
               </tr>  
               {% endfor %}            
